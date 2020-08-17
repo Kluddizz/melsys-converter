@@ -21,8 +21,11 @@ if __name__ == "__main__":
 
         if entry is not None:
             alarm_enabled = entry[5]
+            daily_alarm = entry[8] == "Tagesalarme"
 
-            if alarm_enabled:
+            if daily_alarm and alarm_enabled:
+                row[27] = "AIP_TAG"
+            elif alarm_enabled:
                 row[27] = "AIP"
 
     aip_data.to_csv('mapped.csv', index=False, sep=';')
